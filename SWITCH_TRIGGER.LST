@@ -1,0 +1,163 @@
+Intel-8051 Macro Assembler - Version 1.00
+
+      1    0000                           	ORG	0000H				;初始化位址
+      2    0000     75 90 FE              LOOP1:	MOV	P1,#11111110B	;迴圈分段1
+      3    0003     30 A0 1A              	JNB	P2.0,KEY0
+      4    0006     30 A1 24              	JNB	P2.1,KEY1
+      5    0009     30 A2 2A              	JNB	P2.2,KEY2
+      6    000C     30 A3 34              	JNB	P2.3,KEY3
+      7    000F                           
+      8    000F     75 90 FD              	MOV	P1,#11111101B
+      9    0012     30 A0 37              	JNB	P2.0,KEY4
+     10    0015     30 A1 41              	JNB	P2.1,KEY5
+     11    0018     30 A2 47              	JNB	P2.2,KEY6
+     12    001B     30 A3 51              	JNB	P2.3,KEY7	
+     13    001E     01 78                 	AJMP	LOOP2
+     14    0020                           	
+     15    0020                           ;	
+     16    0020     75 80 15              KEY0:	MOV	P0,#00010101B	;ALL(ON)
+     17    0023     31 00                 	ACALL DELAY0
+     18    0025     11 F0                 	ACALL	BEEP
+     19    0027     31 14                 	ACALL DELAY5
+     20    0029     11 F0                 	ACALL BEEP
+     21    002B     01 00                 	AJMP	LOOP1
+     22    002D                           
+     23    002D     75 80 00              KEY1:	MOV	P0,#00000000B	;ALL(OFF)
+     24    0030     31 00                 	ACALL DELAY0
+     25    0032     11 F0                 	ACALL	BEEP
+     26    0034     01 00                 	AJMP LOOP1
+     27    0036                           
+     28    0036     75 80 01              KEY2:	MOV	P0,#00000001B 	;客廳(ON)
+     29    0039     31 00                 	ACALL DELAY0
+     30    003B     11 F0                 	ACALL	BEEP
+     31    003D     31 14                 	ACALL DELAY5
+     32    003F     11 F0                 	ACALL BEEP
+     33    0041     01 00                 	AJMP	LOOP1
+     34    0043                           
+     35    0043     75 80 00              KEY3:	MOV	P0,#00000000B	;客廳(OFF)
+     36    0046     31 00                 	ACALL DELAY0
+     37    0048     11 F0                 	ACALL	BEEP
+     38    004A     01 00                 	AJMP	LOOP1
+     39    004C                           
+     40    004C     75 80 04              KEY4:	MOV	P0,#00000100B	;廚房(ON)
+     41    004F     31 00                 	ACALL DELAY0
+     42    0051     11 F0                 	ACALL	BEEP
+     43    0053     31 14                 	ACALL DELAY5
+     44    0055     11 F0                 	ACALL BEEP
+     45    0057     01 00                 	AJMP	LOOP1
+     46    0059                           
+     47    0059     75 80 00              KEY5:	MOV	P0,#00000000B	;廚房(OFF)
+     48    005C     31 00                 	ACALL DELAY0
+     49    005E     11 F0                 	ACALL	BEEP
+     50    0060     01 00                 	AJMP LOOP1
+     51    0062                           
+     52    0062     75 80 10              KEY6:	MOV	P0,#00010000B	;廁所(ON)
+     53    0065     31 00                 	ACALL DELAY0
+     54    0067     11 F0                 	ACALL	BEEP
+     55    0069     31 14                 	ACALL DELAY5
+     56    006B     11 F0                 	ACALL BEEP
+     57    006D     01 00                 	AJMP	LOOP1
+     58    006F                           
+     59    006F     75 80 00              KEY7:	MOV	P0,#00000000B	;廁所(OFF)
+     60    0072     31 00                 	ACALL DELAY0
+     61    0074     11 F0                 	ACALL	BEEP
+     62    0076     01 00                 	AJMP	LOOP1
+     63    0078                           
+     64    0078     75 90 FB              LOOP2:	MOV	P1,#11111011B	;迴圈分段2
+     65    007B     30 A0 1A              	JNB	P2.0,KEY8
+     66    007E     30 A1 24              	JNB	P2.1,KEY9
+     67    0081     30 A2 2A              	JNB	P2.2,KEYA
+     68    0084     30 A3 34              	JNB	P2.3,KEYB
+     69    0087                           
+     70    0087     75 90 F7              	MOV	P1,#11110111B
+     71    008A     30 A0 37              	JNB	P2.0,KEYC
+     72    008D     30 A1 41              	JNB	P2.1,KEYD
+     73    0090     30 A2 47              	JNB	P2.2,KEYE
+     74    0093     30 A3 51              	JNB	P2.3,KEYF
+     75    0096     01 00                 	AJMP	LOOP1
+     76    0098                           ;
+     77    0098     75 80 05              KEY8:	MOV	P0,#00000101B	;客廳+廚房(ON)
+     78    009B     31 00                 	ACALL DELAY0
+     79    009D     11 F0                 	ACALL	BEEP
+     80    009F     31 14                 	ACALL DELAY5
+     81    00A1     11 F0                 	ACALL BEEP
+     82    00A3     01 78                 	AJMP	LOOP2
+     83    00A5                           
+     84    00A5     75 80 00              KEY9:	MOV	P0,#00000000B	;客廳+廚房(OFF)
+     85    00A8     31 00                 	ACALL DELAY0
+     86    00AA     11 F0                 	ACALL	BEEP
+     87    00AC     01 78                 	AJMP	LOOP2
+     88    00AE                           
+     89    00AE     75 80 11              KEYA:	MOV	P0,#00010001B	;客廳+廁所(ON)
+     90    00B1     31 00                 	ACALL DELAY0
+     91    00B3     11 F0                 	ACALL	BEEP
+     92    00B5     31 14                 	ACALL DELAY5
+     93    00B7     11 F0                 	ACALL BEEP
+     94    00B9     01 78                 	AJMP	LOOP2
+     95    00BB                           
+     96    00BB     75 80 00              KEYB:	MOV	P0,#00000000B	;客廳+廚房(OFF)
+     97    00BE     31 00                 	ACALL DELAY0
+     98    00C0     11 F0                 	ACALL	BEEP
+     99    00C2     01 78                 	AJMP	LOOP2
+    100    00C4                           
+    101    00C4     75 80 14              KEYC:	MOV	P0,#00010100B	;廚房+廁所(ON)
+    102    00C7     31 00                 	ACALL DELAY0
+    103    00C9     11 F0                 	ACALL	BEEP
+    104    00CB     31 14                 	ACALL DELAY5
+    105    00CD     11 F0                 	ACALL BEEP
+    106    00CF     01 78                 	AJMP	LOOP2
+    107    00D1                           
+    108    00D1     75 80 00              KEYD:	MOV	P0,#00000000B	;廚房+廁所(OFF)
+    109    00D4     31 00                 	ACALL DELAY0
+    110    00D6     11 F0                 	ACALL	BEEP
+    111    00D8     01 78                 	AJMP	LOOP2
+    112    00DA                           
+    113    00DA     75 80 15              KEYE:	MOV	P0,#00010101B	;客廳+廚房+廁所(ON)
+    114    00DD     31 00                 	ACALL DELAY0
+    115    00DF     11 F0                 	ACALL	BEEP
+    116    00E1     31 14                 	ACALL DELAY5
+    117    00E3     11 F0                 	ACALL BEEP
+    118    00E5     01 78                 	AJMP	LOOP2
+    119    00E7                           
+    120    00E7     75 80 00              KEYF:	MOV	P0,#00000000B	;客廳+廚房+廁所(OFF)
+    121    00EA     31 00                 	ACALL DELAY0
+    122    00EC     11 F0                 	ACALL	BEEP
+    123    00EE     01 78                 	AJMP	LOOP2
+    124    00F0                           
+    125    00F0                           ;發聲BEEP
+    126    00F0     7E 68                 BEEP:	MOV	R6,#104
+    127    00F2     7D 01                 	MOV	R5,#1
+    128    00F4     11 F6                 	ACALL OUTPUT
+    129    00F6                           
+    130    00F6                           ;輸出BEEP
+    131    00F6     C2 B7                 OUTPUT:	CLR	P3.7
+    132    00F8     31 09                 	ACALL	DELAY
+    133    00FA     D2 B7                 	SETB	P3.7
+    134    00FC     31 09                 	ACALL	DELAY
+    135    00FE     01 78                 	AJMP	LOOP2
+    136    0100                           
+    137    0100                           ;延時指令
+    138    0100     7E 01                 DELAY0:	MOV	R6,#1
+    139    0102     7F C8                 DL1:		MOV	R7,#200
+    140    0104     DF FE                 DL2:		DJNZ	R7,DL2
+    141    0106     DE FA                 		DJNZ	R6,DL1
+    142    0108     22                    		RET
+    143    0109                           
+    144    0109     8E F0                 DELAY:	MOV	B,R6
+    145    010B     7F 06                 DL:		MOV	R7,#6
+    146    010D     DF FE                 		DJNZ	R7,$
+    147    010F     DE FA                 		DJNZ	R6,DL
+    148    0111     AE F0                 		MOV	R6,B
+    149    0113     22                    		RET	
+    150    0114                           
+    151    0114     7E 05                 DELAY5:	MOV	R6,#5
+    152    0116     7A C8                 DL51:		MOV	R2,#200
+    153    0118     DF EA                 DL52:		DJNZ	R7,DL2
+    154    011A     DE E6                 		DJNZ	R6,DL1
+    155    011C     22                    		RET
+    156    011D                           ;
+    157    011D                           END
+    158    011D                           	
+    159    011D                           
+    160    011D                           
+    161    011D                           
