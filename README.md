@@ -1,7 +1,7 @@
 # 8051-Switch-Trigger
 Switch Toggle Based on [Be-Friend® USB SIMLAB 8051 Development Kit](http://www.be-friend.com.tw/en/product_detail.php?id=286)
 
-# Functions
+## Functions
 - A terminal switch to toggle on/off for all circuits
 - Control three different circuits seperately
 
